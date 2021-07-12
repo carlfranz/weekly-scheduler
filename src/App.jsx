@@ -151,7 +151,6 @@ function App() {
   return (
     <div>
       <div className="container">
-        <pre>{JSON.stringify(state, null, 2)}</pre>
         <div className="row">
           <button
             type="button"

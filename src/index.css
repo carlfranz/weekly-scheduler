@@ -103,9 +103,9 @@ button, input, optgroup, select, textarea {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * .5);
-  padding-left: calc(var(--bs-gutter-x) * .5);
-  margin-top: var(--bs-gutter-y);
+  padding-right: calc(var(--app-gutter-x) * .5);
+  padding-left: calc(var(--app-gutter-x) * .5);
+  margin-top: var(--app-gutter-y);
 }
 
 .col-2 {
@@ -128,4 +128,8 @@ button, input, optgroup, select, textarea {
 
 .justify-content-between {
   justify-content: space-between!important;
+}
+
+.col {
+  flex: 1 0 0%;
 }
