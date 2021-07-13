@@ -114,6 +114,7 @@ button, input, optgroup, select, textarea {
 }
 
 .col-3 {
+  box-sizing: border-box;
   flex: 0 0 auto;
   width: 25%;
 }
