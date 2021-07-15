@@ -158,7 +158,7 @@ function App() {
             className="col-2"
             disabled={!enableNewWeek}
           >
-            Nuova settimana
+            New Week
           </button>
         </div>
         <form onSubmit={handleSubmit} onReset={handleReset}>
@@ -166,13 +166,13 @@ function App() {
           <div className="row">
             <div className="col-3">&nbsp;</div>
             <div className="col-3 text-center">
-              <strong>lunedì</strong>
+              <strong>monday</strong>
             </div>
             <div className="col-3 text-center">
-              <strong>martedì</strong>
+              <strong>tuesday</strong>
             </div>
             <div className="col-3 text-center">
-              <strong>mercoledì</strong>
+              <strong>wednesday</strong>
             </div>
           </div>
           <div className="row">
@@ -239,10 +239,10 @@ function App() {
               <strong>&nbsp;</strong>
             </div>
             <div className="col-3 text-center">
-              <strong>giovedì</strong>
+              <strong>thursday</strong>
             </div>
             <div className="col-3 text-center">
-              <strong>venerdì</strong>
+              <strong>friday</strong>
             </div>
           </div>
           <div className="row">
@@ -289,10 +289,10 @@ function App() {
           </div>
           <div className="row justify-content-between">
             <button type="submit" className="col-2" disabled={!enableSave}>
-              Salva
+              Save
             </button>
             <button type="reset" className="col-2" disabled={!enableRestore}>
-              Ripristina
+              Restore
             </button>
           </div>
         </form>
