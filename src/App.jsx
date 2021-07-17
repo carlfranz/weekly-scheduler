@@ -19,6 +19,44 @@ const StatusEnum = Object.freeze({
   WITH_DATA: "withData",
 });
 
+function RowHeader() {
+  return (
+    <div className="flex flex-col text-center">
+      <div className="flex-none h-8"></div>
+      <div className="flex-grow p-1 flex flex-col justify-center">9:00 - 13:00</div>
+      <div className="flex-grow p-1 flex flex-col justify-center">
+        14:00 - 18:00
+      </div>
+    </div>
+  );
+}
+
+function Day(props) {
+  const { dayName, morning, afternoon, morningChange, afternoonChange } = props;
+  return (
+    <div className={`flex flex-col ${props.className}`}>
+      <div className="text-center flex-none h-8">
+        <strong>{dayName}</strong>
+      </div>
+      <div className="flex-grow p-1">
+        <textarea
+          className="resize-none overflow-hidden p-1 rounded focus:outline-none focus:ring focus:border-green-200 h-20 w-full"
+          value={morning}
+          onChange={morningChange}
+        ></textarea>
+      </div>
+      <div className="flex-grow p-1">
+        <textarea
+          
+          className="resize-none overflow-hidden p-1 rounded focus:outline-none focus:ring focus:border-green-200 h-20 w-full"
+          value={afternoon}
+          onChange={afternoonChange}
+        ></textarea>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [state, setState] = useState({
     ...createEmptyWeek(),
@@ -150,148 +188,71 @@ function App() {
 
   return (
     <div>
-      <div className="container">
-        <div className="row">
+      <div className="md:container md:mx-auto md:px-4">
+        <div>
           <button
             type="button"
+            className="btn btn-blue"
             onClick={handleNewWeek}
-            className="col-2"
             disabled={!enableNewWeek}
           >
             New Week
           </button>
         </div>
+
         <form onSubmit={handleSubmit} onReset={handleReset}>
-          {/* top bar */}
-          <div className="row">
-            <div className="col-3">&nbsp;</div>
-            <div className="col-3 text-center">
-              <strong>monday</strong>
-            </div>
-            <div className="col-3 text-center">
-              <strong>tuesday</strong>
-            </div>
-            <div className="col-3 text-center">
-              <strong>wednesday</strong>
-            </div>
+          <div className="grid grid-cols-7">
+            <RowHeader></RowHeader>
+            <Day
+              className="col-start-2 col-end-4"
+              dayName="monday"
+              morning={state.mon1}
+              afternoon={state.mon2}
+              morningChange={handleMon1}
+              afternoonChange={handleMon2}
+            ></Day>
+            <Day
+              className="col-start-4 col-end-6"
+              dayName="tuesday"
+              morning={state.tue1}
+              afternoon={state.tue2}
+              morningChange={handleTue1}
+              afternoonChange={handleTue2}
+            ></Day>
+            <Day
+              className="col-start-6 col-end-8"
+              dayName="wednesday"
+              morning={state.wed1}
+              afternoon={state.wed2}
+              morningChange={handleWed1}
+              afternoonChange={handleWed2}
+            ></Day>
           </div>
-          <div className="row">
-            <div className="col-3 align-self-center text-center">
-              9:00 - 13:00
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.mon1}
-                onChange={handleMon1}
-              ></textarea>
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.tue1}
-                onChange={handleTue1}
-              ></textarea>
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.wed1}
-                onChange={handleWed1}
-              ></textarea>
-            </div>
+          <div className="grid grid-cols-7">
+            <RowHeader></RowHeader>
+            <Day
+              className="col-start-2 col-end-4"
+              dayName="thursday"
+              morning={state.thu1}
+              afternoon={state.thu2}
+              morningChange={handleThu1}
+              afternoonChange={handleThu2}
+            ></Day>
+            <Day
+              className="col-start-4 col-end-6"
+              dayName="friday"
+              morning={state.fri1}
+              afternoon={state.fri2}
+              morningChange={handleFri1}
+              afternoonChange={handleFri2}
+            ></Day>
+            <div className="flex-grow"></div>
           </div>
-          <div className="row">
-            <div className="col-3 align-self-center text-center">
-              14:00 - 18:00
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.mon2}
-                onChange={handleMon2}
-              ></textarea>
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.tue2}
-                onChange={handleTue2}
-              ></textarea>
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.wed2}
-                onChange={handleWed2}
-              ></textarea>
-            </div>
-          </div>
-          {/* bottom bar */}
-          <div className="row">
-            <div className="col-3 text-center">
-              <strong>&nbsp;</strong>
-            </div>
-            <div className="col-3 text-center">
-              <strong>thursday</strong>
-            </div>
-            <div className="col-3 text-center">
-              <strong>friday</strong>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-3 align-self-center text-center">
-              9:00 - 13:00
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.thu1}
-                onChange={handleThu1}
-              ></textarea>
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.fri1}
-                onChange={handleFri1}
-              ></textarea>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-3 align-self-center text-center">
-              13:00 - 18:00
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.thu2}
-                onChange={handleThu2}
-              ></textarea>
-            </div>
-            <div className="col-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                value={state.fri2}
-                onChange={handleFri2}
-              ></textarea>
-            </div>
-          </div>
-          <div className="row justify-content-between">
-            <button type="submit" className="col-2" disabled={!enableSave}>
+          <div className="flex justify-between">
+            <button className="btn btn-blue" type="submit" disabled={!enableSave}>
               Save
             </button>
-            <button type="reset" className="col-2" disabled={!enableRestore}>
+            <button className="btn btn-blue" type="reset" disabled={!enableRestore}>
               Restore
             </button>
           </div>
