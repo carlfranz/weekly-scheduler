@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { createEmptyWeek, getData, isEmptyWeekData, storeData } from "./data";
+import { WeekExport } from "./WeekExport";
 
 const StatusEnum = Object.freeze({
   CHANGED: "changed",
@@ -142,8 +143,10 @@ function App() {
   return (
     <div>
       <div className="md:container md:mx-auto md:px-4">
-        <h1 className="my-4 text-5xl text-blue-600 text-opacity-70">Weekly Scheduler</h1>
-        <div>
+        <h1 className="my-4 text-5xl text-blue-600 text-opacity-70">
+          Weekly Scheduler
+        </h1>
+        <div className="flex justify-between items-center	">
           <button
             type="button"
             className="btn btn-blue"
@@ -152,6 +155,7 @@ function App() {
           >
             New Week
           </button>
+          <WeekExport weekData={toWeekData()}></WeekExport>
         </div>
 
         <form onSubmit={handleSubmit} onReset={handleReset}>
