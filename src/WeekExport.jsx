@@ -34,23 +34,15 @@ export function WeekExport(props) {
   };
 
   const performExport = () => {
-    navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
-      if (result.state == "granted" || result.state == "prompt") {
-        const htmlTextTable = createTable(weekData);
-        const blob = new Blob([htmlTextTable], { type: "text/html" });
-        const clipboardItem = new ClipboardItem({ [blob.type]: blob });
-        navigator.clipboard.write([clipboardItem]).then(
-          () => {
-            alert("Export complete");
-          },
-          (err) => {
-            alert("Export failed " + err);
-          }
-        );
-      } else {
-        alert("Clipboard access is required to export data");
+    const htmlTextTable = createTable(weekData);
+    navigator.clipboard.writeText(htmlTextTable).then(
+      () => {
+        alert("Export complete");
+      },
+      (err) => {
+        alert("Export failed " + err);
       }
-    });
+    );
   };
   return (
     <div>
