@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { createEmptyWeek, getData, isEmptyWeekData, storeData } from "./data";
-import { WeekExport } from "./WeekExport";
+import { WeekExport, RowHeader, Day } from "./components";
 
 const StatusEnum = Object.freeze({
   CHANGED: "changed",
@@ -13,45 +13,6 @@ const StatusEnum = Object.freeze({
   SAVING: "saving",
   WITH_DATA: "withData",
 });
-
-function RowHeader() {
-  return (
-    <div className="flex flex-col text-center">
-      <div className="flex-none h-8"></div>
-      <div className="flex-grow p-1 flex flex-col justify-center">
-        9:00 - 13:00
-      </div>
-      <div className="flex-grow p-1 flex flex-col justify-center">
-        14:00 - 18:00
-      </div>
-    </div>
-  );
-}
-
-function Day(props) {
-  const { dayName, morning, afternoon, morningChange, afternoonChange } = props;
-  return (
-    <div className={`flex flex-col ${props.className}`}>
-      <div className="text-center flex-none h-8">
-        <strong>{dayName}</strong>
-      </div>
-      <div className="flex-grow p-1">
-        <textarea
-          className="resize-none overflow-hidden p-1 rounded focus:outline-none focus:ring focus:border-green-200 h-20 w-full"
-          value={morning}
-          onChange={morningChange}
-        ></textarea>
-      </div>
-      <div className="flex-grow p-1">
-        <textarea
-          className="resize-none overflow-hidden p-1 rounded focus:outline-none focus:ring focus:border-green-200 h-20 w-full"
-          value={afternoon}
-          onChange={afternoonChange}
-        ></textarea>
-      </div>
-    </div>
-  );
-}
 
 function App() {
   const [status, setStatus] = useState(StatusEnum.IDLE);
